@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes | Chronos</title>
+    <link rel="stylesheet" href="notes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Background Pattern from Dashboard Themes -->
+    <div class="bg-pattern" id="page-bg"></div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-branding">
+            <h2>Chronos</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../1. Home/index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+            <li><a href="../2. Calendar/calendar.html"><i class="fa-solid fa-calendar"></i> <span class="nav-text">Calendar</span></a></li>
+            <li><a href="../5. Projects/projects.html"><i class="fa-solid fa-rocket"></i> <span class="nav-text">Projects</span></a></li>
+            <li class="active"><a href="notes.html"><i class="fa-solid fa-leaf"></i> <span class="nav-text">Notes</span></a></li>
+            <li><a href="../3. Grades/grades.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Grades</span></a></li>
+            <li><a href="../4. PomodoroTimer'/pomodoro.html"><i class="fa-solid fa-hourglass-half"></i> <span class="nav-text">Focus</span></a></li>
+        </ul>
+        <div class="user-profile">
+            <div class="avatar">PC</div>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="dashboard notes-dashboard">
+        
+        <!-- DASHBOARD VIEW -->
+        <div id="notes-home-view" class="view-active">
+            <div class="home-header">
+                <h1>Academic Vault</h1>
+                <button id="new-subject-btn" class="primary-btn"><i class="fa-solid fa-plus"></i> New Subject</button>
+            </div>
+            
+            <!-- Recent Notes Section -->
+            <section class="recent-notes-section">
+                <h2>Recently Edited</h2>
+                <div class="recent-notes-grid" id="recent-notes-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Notebook Shelf Section -->
+            <section class="subjects-section" id="subjects-container">
+                <!-- Subjects and Notebooks populated by JS -->
+            </section>
+        </div>
+
+        <!-- EDITOR VIEW (Split Layout) -->
+        <div id="notes-editor-view" class="view-hidden">
+            <div class="editor-container glass-panel">
+                <!-- LEFT: Sidebar (Hierarchy) -->
+                <aside class="editor-sidebar">
+                    <div class="sidebar-header">
+                        <button id="back-to-home" class="glass-btn small-btn"><i class="fa-solid fa-chevron-left"></i> Home</button>
+                        <h3 id="current-notebook-title">Notebook</h3>
+                    </div>
+                    <div class="sidebar-search">
+                        <input type="text" placeholder="Search notes...">
+                    </div>
+                    <div class="hierarchy-tree" id="hierarchy-tree">
+                        <!-- Hierarchy populated by JS (Topics -> Subtopics -> Notes) -->
+                    </div>
+                    <button class="new-note-btn glass-btn"><i class="fa-solid fa-plus"></i> Add Note</button>
+                </aside>
+
+                <!-- RIGHT: Main Editor -->
+                <section class="editor-main">
+                    <div class="editor-top-bar">
+                        <div class="breadcrumbs" id="editor-breadcrumbs">
+                            Physics / Spring 2026 / Wave Mechanics / Intro
+                        </div>
+                        <div class="editor-actions">
+                            <span class="status-indicator incomplete" id="note-status" onclick="toggleStatus()">
+                                <i class="fa-regular fa-square"></i> Incomplete
+                            </span>
+                            <button class="glass-btn small-btn" title="Attachments"><i class="fa-solid fa-paperclip"></i></button>
+                            <button class="glass-btn small-btn" title="More Options"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-title-area">
+                        <input type="text" class="note-title-input" id="note-title" placeholder="Note Title...">
+                        
+                        <div class="note-metadata">
+                            <div class="tags-container" id="note-tags">
+                                <span class="tag"><i class="fa-solid fa-tag"></i> Week 1</span>
+                                <span class="tag"><i class="fa-solid fa-tag"></i> Introduction</span>
+                                <button class="add-tag-btn"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="attachments-area" id="attachments-area">
+                            <!-- Show attachments if any -->
+                            <div class="attachment-pill">
+                                <i class="fa-solid fa-file-pdf"></i> Syllabus.pdf
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editor-content-area" contenteditable="true" id="editor-content" placeholder="Start typing your notes here...">
+                        <h1>Introductory Concepts</h1>
+                        <p>This is where you can start taking notes. The editor allows for paragraph dumping, rich formatting, and organizing concepts effectively.</p>
+                        <ul>
+                            <li>Use bullet points to summarize.</li>
+                            <li>Attach reference materials easily.</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modals -->
+    <!-- New Subject/Notebook Modal -->
+    <div id="add-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2 id="modal-title">Create Notebook</h2>
+            
+            <div class="setting-group" style="margin-top:20px;">
+                <label>Subject / Course</label>
+                <input type="text" id="modal-subject" placeholder="e.g. Physics 101">
+            </div>
+            
+            <div class="setting-group">
+                <label>Notebook Name</label>
+                <input type="text" id="modal-notebook" placeholder="e.g. Wave Mechanics">
+            </div>
+
+            <div class="setting-group">
+                <label>Cover Color</label>
+                <div class="color-picker" id="modal-colors">
+                    <div class="color-option active" style="background: #8b5a2b;" data-color="#8b5a2b"></div> <!-- Brown -->
+                    <div class="color-option" style="background: #3b82f6;" data-color="#3b82f6"></div> <!-- Blue -->
+                    <div class="color-option" style="background: #10b981;" data-color="#10b981"></div> <!-- Green -->
+                    <div class="color-option" style="background: #ef4444;" data-color="#ef4444"></div> <!-- Red -->
+                    <div class="color-option" style="background: #8b5cf6;" data-color="#8b5cf6"></div> <!-- Purple -->
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top: 25px;">
+                <button class="primary-btn" id="save-notebook-btn" style="flex-grow:1;">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../theme.js"></script>
+    <script src="notes.js"></script>
+</body>
+</html>
