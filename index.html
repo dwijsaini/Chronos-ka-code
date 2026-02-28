@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Chronos</title>
+    <link rel="stylesheet" href="home.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Pattern -->
+    <div class="bg-pattern"></div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-branding">
+            <h2>Chronos</h2>
+        </div>
+        <ul class="nav-links">
+            <li class="active"><a href="#"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a>
+            </li>
+            <li><a href="../2. Calendar/calendar.html"><i class="fa-solid fa-calendar"></i> <span
+                        class="nav-text">Calendar</span></a></li>
+            <li><a href="../5. Projects/projects.html"><i class="fa-solid fa-rocket"></i> <span
+                        class="nav-text">Projects</span></a>
+            </li>
+            <li><a href="../6. Notes/notes.html"><i class="fa-solid fa-leaf"></i> <span
+                        class="nav-text">Notes</span></a></li>
+            <li><a href="../3. Grades/grades.html"><i class="fa-solid fa-graduation-cap"></i> <span
+                        class="nav-text">Grades</span></a></li>
+            <li><a href="../4. PomodoroTimer'/pomodoro.html"><i class="fa-solid fa-hourglass-half"></i> <span
+                        class="nav-text">Focus</span></a></li>
+        </ul>
+        <div class="user-profile">
+            <div class="avatar">PC</div>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard">
+
+        <!-- Hero / Greeting Section -->
+        <div class="hero-section glass-panel">
+            <div class="greeting-area">
+                <h1 id="greeting-title">Good Morning!</h1>
+                <p id="current-date">Today is ...</p>
+            </div>
+            <div class="time-area">
+                <h2 id="current-time">00:00</h2>
+            </div>
+        </div>
+
+        <!-- Quick Access Dashboard -->
+        <div class="quick-access-grid">
+
+            <a href="../2. Calendar/calendar.html" class="module-card glass-panel">
+                <div class="card-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                <div class="card-content">
+                    <h3>Calendar</h3>
+                    <p>Schedule your day and events</p>
+                </div>
+            </a>
+
+            <a href="../5. Projects/projects.html" class="module-card glass-panel">
+                <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                <div class="card-content">
+                    <h3>Projects</h3>
+                    <p>Manage assignments and tasks</p>
+                </div>
+            </a>
+
+            <a href="../6. Notes/notes.html" class="module-card glass-panel">
+                <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div class="card-content">
+                    <h3>Notes</h3>
+                    <p>Capture and organize your thoughts</p>
+                </div>
+            </a>
+
+            <a href="../3. Grades/grades.html" class="module-card glass-panel">
+                <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="card-content">
+                    <h3>Grades</h3>
+                    <p>Track your academic progress</p>
+                </div>
+            </a>
+
+            <a href="../4. PomodoroTimer'/pomodoro.html" class="module-card glass-panel">
+                <div class="card-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                <div class="card-content">
+                    <h3>Focus Timer</h3>
+                    <p>Boost productivity with Pomodoro</p>
+                </div>
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- Theme script -->
+    <script src="../theme.js"></script>
+    <script src="home.js"></script>
+</body>
+
+</html>
