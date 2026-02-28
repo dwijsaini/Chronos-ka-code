@@ -1,0 +1,302 @@
+:root {
+    --bg-color: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+}
+
+:root[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Background Pattern */
+.bg-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+    background-image: url('../Archive/Gray\ Asphalt\ Road\ Photo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -3;
+    pointer-events: none;
+    transition: 0.3s background-color ease;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+}
+
+/* Navigation Base */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    margin: 20px auto 0 auto;
+    max-width: 1500px;
+    width: calc(100% - 40px);
+    height: 70px;
+    background: var(--glass-bg);
+    z-index: 10;
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.nav-branding {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-branding h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 8px 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    background: var(--glass-border);
+    color: var(--text-main);
+}
+
+.nav-links li.active a {
+    background: var(--text-main);
+    color: var(--bg-color);
+    font-weight: 600;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+}
+
+.theme-toggle {
+    margin-left: 15px;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    color: var(--primary);
+}
+
+/* Main Dashboard layout */
+.dashboard {
+    flex-grow: 1;
+    padding: 40px 30px;
+    max-width: 1500px;
+    margin: 0 auto;
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    border-radius: 24px;
+    opacity: 0;
+    animation: fadeInSlide 0.8s ease-out forwards;
+}
+
+.greeting-area h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.greeting-area p {
+    font-size: 20px;
+    color: var(--text-muted);
+}
+
+.time-area h2 {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--primary);
+    text-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Quick Access Grid */
+.quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.module-card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    border: 1px solid var(--glass-border);
+    opacity: 0;
+    animation: fadeInSlide 0.6s ease-out forwards;
+}
+
+.module-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.module-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.module-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.module-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.module-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.module-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.module-card:hover .card-icon {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.card-content h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card-content p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .time-area h2 {
+        font-size: 48px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
